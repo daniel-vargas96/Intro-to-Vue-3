@@ -20,13 +20,17 @@
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
+            <p v-if="onSale">On Sale</p>
             <p>{{ description }}</p>
+            <p v-if="inventory > 10">In Stock</p>
+            <p v-else-if="inventory <= 10 && inventory > 0">Only a few left!</p>
+            <p v-else>Out of Stock</p>
             <a :href="url" target="_blank">Check My Work</a>
           </div>
         </div>
       </div>
     </div>
-  
+
     <!-- Import Js -->
     <script src="./main.js"></script>
   </body>
