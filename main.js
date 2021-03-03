@@ -4,10 +4,12 @@ const app = Vue.createApp({
             cart:0,
             total:0,
             product: 'Socks',
+            brand: 'Vue Mastery',
+            inStock: true,
             image: './assets/images/socks_green.jpg',
             url: 'https://www.daniel-vargas.com/',
             description: 'These socks feature a ribbed cushioned design with a Vans logo at the top, perfect for every occasion.80% Cotton, 18% Nylon, 2% Spandex.',
-            inventory: 100,
+            inventory: 15,
             onSale: true,
             details: ['50% cotton', '30% wool', '20% polyester'],
             sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -20,16 +22,21 @@ const app = Vue.createApp({
     methods: {
       addToCart() {
         this.cart += 1
+        this.inventory--
       },
       subtractToCart() {
         this.cart -= 1
+        this.inventory++
       },
       updateImage(variantImage) {
        this.image = variantImage
       },
       addTotal() {
-        this.total = this.cart
-      }
+        this.total += this.cart
+        this.cart = 0
+        this.total += this.cart
+      },
+
     }
 })
 

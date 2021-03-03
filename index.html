@@ -31,7 +31,7 @@
           <!-- <p v-if="onSale">On Sale</p> -->
           <!-- <p>{{ description }}</p> -->
           <p v-if="inventory > 10">In Stock</p>
-          <p v-else-if="inventory <= 10 && inventory > 0">Only a few left!</p>
+          <p v-else-if="inventory <= 10 && inventory >= 0">Only {{ inventory }} left!</p>
           <p v-else>Out of Stock</p>
           <ul>
             <li v-for="detail in details">{{ detail }}</li>
@@ -39,11 +39,14 @@
           <!-- <ul>
               <li v-for="size in sizes">{{ size }}</li>
             </ul> -->
-          <div class="sock-colors" v-for="variant in variants" :key="variant.id"
-            @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
+          <div class="sock-colors color-circle"
+          v-for="variant in variants" :key="variant.id"
+          @mouseover="updateImage(variant.image)"
+          :style="{ backgroundColor: variant.color }"
+          ></div>
 
           <div class="d-flex justify-content-start align-items-center">
-            <button @click="addToCart" class="btn btn-success">
+            <button @click="addToCart" :disabled="inventory === 0" :class="{ disabledButton: !inStock }" class="btn btn-success">
               <i class="fas fa-plus"></i>
             </button>
             <p class="m-3">{{ cart }}</p>
@@ -52,7 +55,7 @@
             </button>
 
           </div>
-          <button @click="addTotal()" class="btn btn-primary">Add To Cart</button>
+          <button @click="addTotal" :disabled="inventory < 0" :class="{ disabledButton: !inStock }" class="btn btn-primary">Add To Cart</button>
 
 
 
