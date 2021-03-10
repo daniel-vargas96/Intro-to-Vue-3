@@ -22,7 +22,6 @@ app.component('product-display', {
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
-
         <div
           v-for="(variant, index) in variants"
           :key="variant.id"
@@ -59,7 +58,7 @@ app.component('product-display', {
   },
   methods: {
       addToCart() {
-          this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
       },
       updateVariant(index) {
           this.selectedVariant = index
