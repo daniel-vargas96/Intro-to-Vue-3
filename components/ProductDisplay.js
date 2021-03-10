@@ -6,6 +6,7 @@ app.component('product-display', {
     }
   },
   template:
+
   /*html*/`
   <div class="product-display">
     <div class="product-container">
@@ -19,11 +20,9 @@ app.component('product-display', {
         <p v-else>Out of Stock</p>
 
         <p>Shipping: {{ shipping }}</p>
-
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
-
         <div
           v-for="(variant, index) in variants"
           :key="variant.id"
